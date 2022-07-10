@@ -1,0 +1,39 @@
+
+{% extends 'profiles/innovation_submission_form_base.html' %}
+
+{% block detailed_info_section %}
+    <form action="{{ form_action }}">
+        <div class="row">
+            <div class="col-md-12">
+              <div class="mb-3">
+                <label for="jobTitle1"></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="jobTitle1"
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="videoUrl1">Company Name :</label>
+                <input type="text" class="form-control" id="videoUrl1"
+                />
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="mb-3">
+                <label for="shortDescription1"
+                  >Job Description :</label
+                >
+                <textarea
+                  name="shortDescription"
+                  id="shortDescription1"
+                  rows="6"
+                  class="form-control"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+    </form>
+{% endblock %}

@@ -1,0 +1,179 @@
+
+{% extends 'profiles/innovation_submission_form_base.html' %}
+{% load widget_tweaks %}
+
+
+{% block documentation_section %}
+    <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+                <div class="card-body">
+                  <div class="d-md-flex">
+                    <div>
+                      <h4 class="card-title">
+                        <span class="lstick d-inline-block align-middle"></span>Innovation Images
+                      </h4>
+                    </div>
+                    <div class="ms-auto mt-3 mt-md-0">
+                      <button class="btn btn-sm btn-rounded btn-success" data-bs-toggle="modal" data-bs-target="#myModal">
+                        Add Task
+                      </button>
+                    </div>
+                  </div>
+                  <div class="table-responsive mt-3 no-wrap">
+                    <table class="table v-middle mb-0">
+                      <thead>
+                        <tr>
+                          <th class="border-0" colspan="2">Assigned</th>
+                          <th class="border-0">Name</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td style="width: 50px">
+                            <span class="
+                                round
+                                rounded-circle
+                                text-white
+                                d-inline-block
+                                text-center
+                                bg-info
+                              ">S</span>
+                          </td>
+                          <td>
+                            <h6 class="mb-0 font-weight-medium">Sunil Joshi</h6>
+                            <small class="text-muted">Web Designer</small>
+                          </td>
+                            <td>MedicalPro Theme</td>
+                        </tr>
+
+                        <tr>
+                          <td>
+                            <span class="
+                                round
+                                rounded-circle
+                                text-white
+                                d-inline-block
+                                text-center
+                                bg-success
+                              ">B</span>
+                          </td>
+                          <td>
+                            <h6 class="mb-0 font-weight-medium">
+                              Bhavesh patel
+                            </h6>
+                            <small class="text-muted">Developer</small>
+                          </td>
+                          <td>MedicalPro Theme</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <span class="
+                                round
+                                rounded-circle
+                                text-white
+                                d-inline-block
+                                text-center
+                                bg-primary
+                              ">N</span>
+                          </td>
+                          <td>
+                            <h6 class="mb-0 font-weight-medium">Nirav Joshi</h6>
+                            <small class="text-muted">Frontend Eng</small>
+                          </td>
+                          <td>Elite Admin</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <span class="
+                                round
+                                rounded-circle
+                                text-white
+                                d-inline-block
+                                text-center
+                                bg-warning
+                              ">M</span>
+                          </td>
+                          <td>
+                            <h6 class="mb-0 font-weight-medium">Micheal Doe</h6>
+                            <small class="text-muted">Content Writer</small>
+                          </td>
+                          <td>Helping Hands</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+        </div>
+
+        <div class="col-md-12">
+          <div class="card">
+                <div class="card-body">
+                  <div class="d-md-flex">
+                    <div>
+                      <h4 class="card-title">
+                        <span class="lstick d-inline-block align-middle"></span>Reference Material Links
+                      </h4>
+                    </div>
+                    <div class="ms-auto mt-3 mt-md-0">
+                      <button class="btn btn-sm btn-rounded btn-success" data-bs-toggle="modal" data-bs-target="#myModal">
+                        Add Task
+                      </button>
+                    </div>
+                  </div>
+                  <div class="table-responsive mt-3 no-wrap">
+                    <table class="table v-middle mb-0">
+                      <thead>
+                        <tr>
+                          <th class="border-0">Name</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>MedicalPro Theme</td>
+                        </tr>
+                        <tr>
+                          <td>Elite Admin</td>
+                        </tr>
+                        <tr>
+                          <td>Helping Hands</td>
+                        </tr>
+                        <tr>
+                          <td>Digital Agency</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-nav-buttons text-center margin-top-10 padding-0">
+
+                {% if solution_id %}
+                    <a class="btn exit-btn" href="#">
+                        Cancel & Exit
+                    </a>
+                {% else %}
+                    <a class="btn exit-btn" href="#">
+                        Back to My Solutions
+                    </a>
+                {% endif %}
+
+                {% if next_form %}
+                    <a href="{{ next_form }}" class="btn btn-step">
+                        Skip to Next Step <i class="mdi mdi-arrow-right"></i>
+                    </a>
+                {% endif %}
+
+                <button type="submit" class="btn btn-success btn-rounded pull-right">
+                    Save & go to Next
+                </button>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -6,4 +6,4 @@ def index(request):
 
 
 def forms(request):
-    return render(request, 'profiles/forms.html')
+    return render(request, 'profiles/innovation_submission_form_base.html')

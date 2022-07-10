@@ -1,11 +1,15 @@
 $(document).ready(function () {
-    $(".tab-wizard").steps({
+
+    let innovation_submission_div = $('#innovation-submission-div');
+    innovation_submission_div.steps({
         headerTag: "h6",
         bodyTag: "section",
         transitionEffect: "fade",
+        enablePagination: false,
         titleTemplate: '<span class="step">#index#</span> #title#',
-        labels: {
-            finish: "Submit",
+        startIndex: innovation_submission_div.data('current-step'),
+        onStepChanging: function (event, currentIndex, newIndex) {
+            return false;
         },
         onFinished: function (event, currentIndex) {
             swal(

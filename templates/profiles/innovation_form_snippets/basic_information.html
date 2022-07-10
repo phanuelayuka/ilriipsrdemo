@@ -1,0 +1,73 @@
+
+{% extends 'profiles/innovation_submission_form_base.html' %}
+{% load widget_tweaks %}
+
+{% block basic_info_section %}
+    <form action="{{ form_action }}">
+        <div class="row">
+            <div class="col-md-12">
+              <div class="mb-3">
+                <label for="id_title">
+                    Provide a short name for the innovation (max 10 words)
+                </label>
+                  {% render_field basic_form.title class="form-control" %}
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              <div class="mb-5">
+                <label for="id_description">
+                    Describe the innovation (max 25 words)
+                </label>
+                  {% render_field basic_form.description class="form-control" %}
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              <div class="mb-5">
+                <label for="id_in_cgiar_innovation_dashboard">
+                    Was this Innovation developed under CGIAR Research Programs (CRPs) and/ or
+                    Projects and has it been documented in the CGIAR Innovation Dashboard?
+                </label>
+                  {% render_field basic_form.in_cgiar_innovation_dashboard class="form-control" %}
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              <div class="mb-5">
+                <label for="id_innovation_dashboard_id_or_title">
+                    Provide the CGIAR Innovation Dashboard ID or Title of Innovation
+                </label>
+                  {% render_field basic_form.innovation_dashboard_id_or_title class="form-control" %}
+              </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-nav-buttons text-center margin-top-10 padding-0">
+                    {% if solution_id %}
+                        <a class="btn exit-btn" href="#">
+                            Cancel & Exit
+                        </a>
+                    {% else %}
+                        <a class="btn exit-btn" href="#">
+                            Back to My Solutions
+                        </a>
+                    {% endif %}
+
+                    {% if next_form %}
+                        <a href="{{ next_form }}" class="btn btn-step">
+                            Skip to Next Step <i class="mdi mdi-arrow-right"></i>
+                        </a>
+                    {% endif %}
+
+                    <button type="submit" class="btn btn-success btn-rounded pull-right">
+                        Save & go to Next
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+{% endblock %}
