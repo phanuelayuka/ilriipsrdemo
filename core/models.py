@@ -86,3 +86,36 @@ class InnovationImage(CoreAbstractModel):
 class InnovationReferenceMaterialUrl(CoreAbstractModel):
     innovation = models.ForeignKey(InnovationProfile, on_delete=models.CASCADE)
     url = models.URLField()
+
+
+class InnovationContactPerson(CoreAbstractModel):
+    innovation = models.ForeignKey(InnovationProfile, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    email_address = models.EmailField()
+
+    def __str__(self):
+        return f'{self.first_name} {self.last_name}'
+
+
+class InnovationContributor(CoreAbstractModel):
+    innovation = models.ForeignKey(InnovationProfile, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    contributor_order = models.IntegerField(default=0)
+
+    class Meta:
+        ordering = ['contributor_order']
+
+    def __str__(self):
+        return f'{self.first_name} {self.last_name}'
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            last_contributor = self.objects.filter(innovation_id=self.innovation_id, deleted=False).last()
+            if last_contributor:
+                self.contributor_order = last_contributor + 1
+        super(InnovationContributor, self).save(*args, **kwargs)
+
+
+
