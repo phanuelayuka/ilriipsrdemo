@@ -1,4 +1,14 @@
 from django.db import models
+from django.utils import timezone
+
+
+class CoreAbstractModel(models.Model):
+    created_on = models.DateTimeField(auto_now_add=timezone.now)
+    deleted = models.BooleanField(default=False)
+    deleted_on = models.DateTimeField(null=True)
+
+    class Meta:
+        abstract = True
 
 
 class InnovationProfile(models.Model):
@@ -20,3 +30,13 @@ class InnovationProfile(models.Model):
     description = models.TextField(null=False)
     in_cgiar_innovation_dashboard = models.CharField(max_length=50, choices=IN_INNOVATION_DASH_CHOICES)
     innovation_dashboard_id_or_title = models.CharField(max_length=300, null=True, blank=True)
+
+
+class InnovationImage(CoreAbstractModel):
+    innovation = models.ForeignKey(InnovationProfile, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='innovationprofiles')
+
+
+class InnovationReferenceMaterialUrl(CoreAbstractModel):
+    innovation = models.ForeignKey(InnovationProfile, on_delete=models.CASCADE)
+    url = models.URLField()
