@@ -1,0 +1,7 @@
+
+.idea/
+ipsrdemo/settings.py
+__pycache__/
+
+.env
+venv/
