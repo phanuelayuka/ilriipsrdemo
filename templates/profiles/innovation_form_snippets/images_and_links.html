@@ -1,4 +1,3 @@
-
 {% extends 'profiles/innovation_submission_form_base.html' %}
 {% load widget_tweaks %}
 
@@ -6,78 +5,115 @@
 {% block documentation_section %}
     <div class="row">
         <div class="col-md-12">
-          <div class="card">
+            <div class="card">
                 <div class="card-body">
-                  <div class="d-md-flex">
-                    <div>
-                      <h4 class="card-title" style="font-size: 16px">
-                        <span class="lstick d-inline-block align-middle"></span>Innovation Images
-                      </h4>
+                    <div class="d-md-flex">
+                        <div>
+                            <h4 class="card-title" style="font-size: 16px">
+                                <span class="lstick d-inline-block align-middle"></span>Innovation Images
+                            </h4>
+                        </div>
+                        <div class="ms-auto mt-3 mt-md-0">
+                            <button class="btn btn-sm btn-rounded btn-dark" id="innovation-image-modal-btn">
+                                Add Image
+                            </button>
+                        </div>
                     </div>
-                    <div class="ms-auto mt-3 mt-md-0">
-                      <button class="btn btn-sm btn-rounded btn-success" data-bs-toggle="modal" data-bs-target="#myModal">
-                        Add Image
-                      </button>
+                    <div class="table-responsive mt-3 no-wrap">
+                        <table class="table v-middle mb-0">
+                            <tbody>
+                            <tr>
+                                <td>MedicalPro Theme</td>
+                            </tr>
+                            <tr>
+                                <td>Elite Admin</td>
+                            </tr>
+                            <tr>
+                                <td>Helping Hands</td>
+                            </tr>
+                            <tr>
+                                <td>Digital Agency</td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
-                  </div>
-                  <div class="table-responsive mt-3 no-wrap">
-                    <table class="table v-middle mb-0">
-                      <tbody>
-                        <tr>
-                          <td>MedicalPro Theme</td>
-                        </tr>
-                        <tr>
-                          <td>Elite Admin</td>
-                        </tr>
-                        <tr>
-                          <td>Helping Hands</td>
-                        </tr>
-                        <tr>
-                          <td>Digital Agency</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
                 </div>
-              </div>
+            </div>
         </div>
 
         <div class="col-md-12">
-          <div class="card">
+            <div class="card">
                 <div class="card-body">
-                  <div class="d-md-flex">
-                    <div>
-                      <h6 class="card-title" style="font-size: 16px">
-                        <span class="lstick d-inline-block align-middle"></span>Reference Material Links
-                      </h6>
+                    <div class="d-md-flex">
+                        <div>
+                            <h6 class="card-title" style="font-size: 16px">
+                                <span class="lstick d-inline-block align-middle"></span>Reference Material Links
+                            </h6>
+                        </div>
+                        <div class="ms-auto mt-3 mt-md-0">
+                            <button class="btn btn-sm btn-rounded btn-dark" id="innovation-ref-material-modal-btn">
+                                Add Link
+                            </button>
+                        </div>
                     </div>
-                    <div class="ms-auto mt-3 mt-md-0">
-                      <button class="btn btn-sm btn-rounded btn-success" data-bs-toggle="modal" data-bs-target="#myModal">
-                        Add Link
-                      </button>
+                    <div class="table-responsive mt-3 no-wrap">
+                        <table class="table v-middle mb-0">
+                            <tbody>
+                            <tr>
+                                <td>MedicalPro Theme</td>
+                            </tr>
+                            <tr>
+                                <td>Elite Admin</td>
+                            </tr>
+                            <tr>
+                                <td>Helping Hands</td>
+                            </tr>
+                            <tr>
+                                <td>Digital Agency</td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
-                  </div>
-                  <div class="table-responsive mt-3 no-wrap">
-                    <table class="table v-middle mb-0">
-                      <tbody>
-                        <tr>
-                          <td>MedicalPro Theme</td>
-                        </tr>
-                        <tr>
-                          <td>Elite Admin</td>
-                        </tr>
-                        <tr>
-                          <td>Helping Hands</td>
-                        </tr>
-                        <tr>
-                          <td>Digital Agency</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
                 </div>
-              </div>
+            </div>
         </div>
+    </div>
+
+    <div id="innovation-image-modal" class="hidden-div" data-izimodal-title="Add Innovation Image">
+        <form action="{{ image_form_action }}" id="innovation-image-form" class="p-3" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="mb-3">
+                        <label for="id_first_name">Photo/Image</label>
+                        {% render_field images_form.image class="form-control" %}
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="mb-5">
+                        <button class="btn btn-light">Upload</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div id="innovation-ref-material-modal" class="hidden-div" data-izimodal-title="Add Reference Material URL">
+        <form action="{{ ref_form_action }}" id="innovation-ref-material-form" class="p-3">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="mb-3">
+                        <label for="id_first_name">URL</label>
+                        {% render_field references_form.url class="form-control" %}
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="mb-5">
+                        <button class="btn btn-light">Save</button>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 
     <div class="row">
@@ -95,10 +131,6 @@
                         Skip to Next Step <i class="mdi mdi-arrow-right"></i>
                     </a>
                 {% endif %}
-
-                <button type="submit" class="btn btn-success btn-rounded pull-right">
-                    Save & go to Next
-                </button>
             </div>
         </div>
     </div>
