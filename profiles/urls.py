@@ -16,4 +16,6 @@ urlpatterns = [
 
     path('innovations/<int:innovation_id>/save-contact-person/', inno_create.save_contact_person,
          name='inno-save-contact-person'),
+    path('innovations/<int:innovation_id>/save-contributor/', inno_create.save_contributor,
+         name='inno-save-contributor'),
 ]

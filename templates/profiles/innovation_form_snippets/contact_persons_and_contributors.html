@@ -48,18 +48,11 @@
                         </div>
                     </div>
                     <div class="table-responsive mt-3 no-wrap">
-                        <table class="table v-middle mb-0">
+                        <table class="table v-middle mb-0" id="contributors-table">
                             <tbody>
-                                <tr>
-                                    <td style="width: 30px">
-                                        <span class=" round rounded-circle text-white d-inline-block text-center bg-info">S</span>
-                                    </td>
-                                  <td>
-                                    <h6 class="mb-0 font-weight-medium">Sunil Joshi</h6>
-                                    <small class="text-muted">Web Designer</small>
-                                  </td>
-                                    <td>Elite Admin</td>
-                                </tr>
+                                {% for contributor in contributors %}
+                                    {% include 'profiles/innovation_data_snippets/contributors_tr.html' %}
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>
@@ -104,7 +97,8 @@
     </div>
 
     <div id="contributors-modal" class="hidden-div" data-izimodal-title="Add Contributor">
-        <form action="{{ contributor_form_action }}" id="contributor-form" class="p-3" method="post">
+        <form action="javascript:void(0);" data-action="{{ contributor_form_action }}" id="contributor-form"
+              class="p-3" method="post">
             {% csrf_token %}
             <div class="row">
                 <div class="col-md-12">

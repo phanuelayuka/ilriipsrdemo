@@ -69,11 +69,33 @@ $(document).ready(function () {
             data: contact_person_form.serialize(),
             method: "POST",
             success: function (data) {
-                console.log(data);
                 if(data.entry_html){
                     $('#contact-persons-table').find('tbody').append(data.entry_html);
                     contact_person_modal.iziModal('close');
                     contact_person_form.trigger('reset');
+                    submit_btn.removeAttr('disabled');
+                }
+            },
+            error: function (data) {
+
+            }
+        });
+    });
+
+    contributors_modal.on('submit', '#contributor-form', function (e) {
+        e.preventDefault();
+        let contributors_form = $(this);
+        let submit_btn = contributors_form.find('button[type=submit]');
+        submit_btn.attr('disabled', 'disabled');
+        $.ajax({
+            url: contributors_form.data('action'),
+            data: contributors_form.serialize(),
+            method: "POST",
+            success: function (data) {
+                if(data.entry_html){
+                    $('#contributors-table').find('tbody').append(data.entry_html);
+                    contributors_modal.iziModal('close');
+                    contributors_form.trigger('reset');
                     submit_btn.removeAttr('disabled');
                 }
             },

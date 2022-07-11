@@ -105,3 +105,20 @@ def save_contact_person(request, innovation_id):
         return HttpResponse(simplejson.dumps({'entry_html': entry_html}), 'application/json')
     else:
         return JsonResponse({'message': 'Contact person not saved.'}, status=HTTPStatus.BAD_REQUEST)
+
+
+def save_contributor(request, innovation_id):
+    if request.method != 'POST':
+        return JsonResponse({'message': 'Method not allowed.'}, status=HTTPStatus.BAD_REQUEST)
+
+    form = InnovationContributorForm(request.POST)
+    if form.is_valid():
+        contributor = form.save(commit=False)
+        contributor.innovation_id = innovation_id
+        contributor.save()
+
+        entry_html = render_to_string('profiles/innovation_data_snippets/contributors_tr.html',
+                                      request=request, context={'contributor': contributor})
+        return HttpResponse(simplejson.dumps({'entry_html': entry_html}), 'application/json')
+    else:
+        return JsonResponse({'message': 'Contributor not saved.'}, status=HTTPStatus.BAD_REQUEST)

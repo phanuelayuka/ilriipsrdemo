@@ -66,9 +66,9 @@ class InnovationContributor(CoreAbstractModel):
 
     def save(self, *args, **kwargs):
         if not self.id:
-            last_contributor = self.objects.filter(innovation_id=self.innovation_id, deleted=False).last()
+            last_contributor = self.__class__.objects.filter(innovation_id=self.innovation_id, deleted=False).last()
             if last_contributor:
-                self.contributor_order = last_contributor + 1
+                self.contributor_order = last_contributor.contributor_order + 1
         super(InnovationContributor, self).save(*args, **kwargs)
 
 
