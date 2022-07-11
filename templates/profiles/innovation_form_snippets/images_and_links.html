@@ -20,20 +20,11 @@
                         </div>
                     </div>
                     <div class="table-responsive mt-3 no-wrap">
-                        <table class="table v-middle mb-0">
+                        <table class="table v-middle mb-0" id="innovation-images-table">
                             <tbody>
-                            <tr>
-                                <td>MedicalPro Theme</td>
-                            </tr>
-                            <tr>
-                                <td>Elite Admin</td>
-                            </tr>
-                            <tr>
-                                <td>Helping Hands</td>
-                            </tr>
-                            <tr>
-                                <td>Digital Agency</td>
-                            </tr>
+                                {% for innovation_image in innovation_images %}
+                                    {% include 'profiles/innovation_data_snippets/images_tr.html' %}
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>
@@ -73,6 +64,7 @@
     <div id="innovation-image-modal" class="hidden-div" data-izimodal-title="Add Innovation Image">
         <form action="javascript:void(0)" data-action="{{ images_form_action }}" id="innovation-image-form"
               class="p-3" enctype="multipart/form-data" method="post">
+            {% csrf_token %}
             <div class="row">
                 <div class="col-md-12">
                     <div class="mb-3">

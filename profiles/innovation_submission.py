@@ -44,7 +44,7 @@ def images_and_ref(request, innovation_id):
         'innovation_refs': innovation_refs,
         'images_form': InnovationImageForm(),
         'references_form': InnovationReferenceMaterialUrlForm(),
-        # 'images_form_action': reverse('profiles:inno-save-image', kwargs={'innovation_id': innovation.id}),
+        'images_form_action': reverse('profiles:inno-save-image', kwargs={'innovation_id': innovation.id}),
         'ref_form_action': reverse('profiles:inno-save-ref', kwargs={'innovation_id': innovation.id}),
         'next_form': reverse('profiles:inno-create-detailed', kwargs={'innovation_id': innovation.id}),
     }
@@ -66,6 +66,23 @@ def save_innovation_url(request, innovation_id):
         return HttpResponse(simplejson.dumps({'entry_html': entry_html}), 'application/json')
     else:
         return JsonResponse({'message': 'Reference Material URL not saved.'}, status=HTTPStatus.BAD_REQUEST)
+
+
+def save_innovation_image(request, innovation_id):
+    if request.method != 'POST':
+        return JsonResponse({'message': 'Method not allowed.'}, status=HTTPStatus.BAD_REQUEST)
+
+    form = InnovationImageForm(request.POST, request.FILES)
+    if form.is_valid():
+        innovation_image = form.save(commit=False)
+        innovation_image.innovation_id = innovation_id
+        innovation_image.save()
+
+        entry_html = render_to_string('profiles/innovation_data_snippets/images_tr.html',
+                                      request=request, context={'innovation_image': innovation_image})
+        return HttpResponse(simplejson.dumps({'entry_html': entry_html}), 'application/json')
+    else:
+        return JsonResponse({'message': 'Image not saved.'}, status=HTTPStatus.BAD_REQUEST)
 
 
 def detailed_information(request, innovation_id):

@@ -5,8 +5,6 @@ $(document).ready(function () {
     let contributors_modal = $('#contributors-modal');
     let images_modal = $('#innovation-image-modal');
     let reference_url_modal = $('#innovation-ref-material-modal');
-    let images_form = $('#innovation-image-form');
-    let reference_url_form = $('#innovation-ref-material-form');
 
     innovation_submission_div.steps({
         headerTag: "h6",
@@ -76,7 +74,7 @@ $(document).ready(function () {
                 }
             },
             error: function (data) {
-
+                submit_btn.removeAttr('disabled');
             }
         });
     });
@@ -99,7 +97,7 @@ $(document).ready(function () {
                 }
             },
             error: function (data) {
-
+                submit_btn.removeAttr('disabled');
             }
         });
     });
@@ -122,7 +120,34 @@ $(document).ready(function () {
                 }
             },
             error: function (data) {
+                submit_btn.removeAttr('disabled');
+            }
+        });
+    });
 
+    images_modal.on('submit', '#innovation-image-form', function (e) {
+        e.preventDefault();
+        let images_form = $(this);
+        let form_data = new FormData(images_form[0]);
+        let submit_btn = images_form.find('button[type=submit]');
+        submit_btn.attr('disabled', 'disabled');
+        $.ajax({
+            url: images_form.data('action'),
+            data: form_data,
+            method: "POST",
+            processData: false,
+            contentType: false,
+
+            success: function (data) {
+                if(data.entry_html){
+                    $('#innovation-images-table').find('tbody').append(data.entry_html);
+                    images_modal.iziModal('close');
+                    images_form.trigger('reset');
+                    submit_btn.removeAttr('disabled');
+                }
+            },
+            error: function (data) {
+                submit_btn.removeAttr('disabled');
             }
         });
     });

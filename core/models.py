@@ -30,6 +30,9 @@ class InnovationImage(CoreAbstractModel):
     innovation = models.ForeignKey(InnovationProfile, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='innovationprofiles')
 
+    def __str__(self):
+        return self.image.name.replace("innovationprofiles/", "")
+
 
 class InnovationReferenceMaterialUrl(CoreAbstractModel):
     innovation = models.ForeignKey(InnovationProfile, on_delete=models.CASCADE)
