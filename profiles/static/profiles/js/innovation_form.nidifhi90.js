@@ -5,6 +5,9 @@ $(document).ready(function () {
     let contributors_modal = $('#contributors-modal');
     let images_modal = $('#innovation-image-modal');
     let reference_url_modal = $('#innovation-ref-material-modal');
+    let contributors_form = $('#contributor-form');
+    let images_form = $('#innovation-image-form');
+    let reference_url_form = $('#innovation-ref-material-form');
 
     innovation_submission_div.steps({
         headerTag: "h6",
@@ -24,7 +27,8 @@ $(document).ready(function () {
         contact_person_modal.iziModal({
             history: false,
             width: screen.width * 0.5,
-        }).iziModal('open');
+        });
+        contact_person_modal.iziModal('open');
     });
 
     $('#contributor-modal-btn').on('click', function (e) {
@@ -33,7 +37,8 @@ $(document).ready(function () {
         contributors_modal.iziModal({
             history: false,
             width: screen.width * 0.5,
-        }).iziModal('open');
+        });
+        contributors_modal.iziModal('open');
     });
 
     $('#innovation-image-modal-btn').on('click', function (e) {
@@ -52,6 +57,30 @@ $(document).ready(function () {
             history: false,
             width: screen.width * 0.5,
         }).iziModal('open');
+    });
+
+    contact_person_modal.on('submit', '#contact-person-form', function (e) {
+        e.preventDefault();
+        let contact_person_form = $(this);
+        let submit_btn = contact_person_form.find('button[type=submit]');
+        submit_btn.attr('disabled', 'disabled');
+        $.ajax({
+            url: contact_person_form.data('action'),
+            data: contact_person_form.serialize(),
+            method: "POST",
+            success: function (data) {
+                console.log(data);
+                if(data.entry_html){
+                    $('#contact-persons-table').find('tbody').append(data.entry_html);
+                    contact_person_modal.iziModal('close');
+                    contact_person_form.trigger('reset');
+                    submit_btn.removeAttr('disabled');
+                }
+            },
+            error: function (data) {
+
+            }
+        });
     });
 });
 

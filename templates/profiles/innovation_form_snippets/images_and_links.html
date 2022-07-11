@@ -80,7 +80,7 @@
     </div>
 
     <div id="innovation-image-modal" class="hidden-div" data-izimodal-title="Add Innovation Image">
-        <form action="{{ image_form_action }}" id="innovation-image-form" class="p-3" enctype="multipart/form-data">
+        <form action="{{ images_form_action }}" id="innovation-image-form" class="p-3" enctype="multipart/form-data" method="post">
             <div class="row">
                 <div class="col-md-12">
                     <div class="mb-3">
@@ -90,7 +90,7 @@
                 </div>
                 <div class="col-md-12">
                     <div class="mb-5">
-                        <button class="btn btn-light">Upload</button>
+                        <button type="submit" class="btn btn-light">Upload</button>
                     </div>
                 </div>
             </div>
@@ -98,7 +98,7 @@
     </div>
 
     <div id="innovation-ref-material-modal" class="hidden-div" data-izimodal-title="Add Reference Material URL">
-        <form action="{{ ref_form_action }}" id="innovation-ref-material-form" class="p-3">
+        <form action="{{ ref_form_action }}" id="innovation-ref-material-form" class="p-3" method="post">
             <div class="row">
                 <div class="col-md-12">
                     <div class="mb-3">
@@ -109,7 +109,7 @@
 
                 <div class="col-md-12">
                     <div class="mb-5">
-                        <button class="btn btn-light">Save</button>
+                        <button type="submit" class="btn btn-light">Save</button>
                     </div>
                 </div>
             </div>

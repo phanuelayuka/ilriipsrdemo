@@ -45,6 +45,9 @@ class InnovationContactPerson(CoreAbstractModel):
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
 
+    def initials(self):
+        return f'{self.first_name[0].upper()} {self.last_name[0].upper()}'
+
 
 class InnovationContributor(CoreAbstractModel):
     innovation = models.ForeignKey(InnovationProfile, on_delete=models.CASCADE)
@@ -57,6 +60,9 @@ class InnovationContributor(CoreAbstractModel):
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
+
+    def initials(self):
+        return f'{self.first_name[0].upper()} {self.last_name[0].upper()}'
 
     def save(self, *args, **kwargs):
         if not self.id:

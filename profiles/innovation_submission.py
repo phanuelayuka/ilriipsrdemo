@@ -1,5 +1,9 @@
-from django.http import Http404
+from http import HTTPStatus
+
+import simplejson as simplejson
+from django.http import Http404, JsonResponse, HttpResponse
 from django.shortcuts import render, redirect
+from django.template.loader import render_to_string
 from django.urls import reverse
 
 from core.models import InnovationImage, InnovationReferenceMaterialUrl, InnovationProfile, InnovationContactPerson, \
@@ -40,6 +44,8 @@ def images_and_ref(request, innovation_id):
         'innovation_refs': innovation_refs,
         'images_form': InnovationImageForm(),
         'references_form': InnovationReferenceMaterialUrlForm(),
+        'images_form_action': reverse('profiles:inno-save-image', kwargs={'innovation_id': innovation.id}),
+        'ref_form_action': reverse('profiles:inno-save-ref', kwargs={'innovation_id': innovation.id}),
         'next_form': reverse('profiles:inno-create-detailed', kwargs={'innovation_id': innovation.id}),
     }
     return render(request, 'profiles/innovation_form_snippets/images_and_links.html', context=context)
@@ -75,8 +81,27 @@ def persons_info(request, innovation_id):
         'contributors': contributors,
         'contact_person_form': InnovationContactPersonForm(),
         'contributor_form': InnovationContributorForm(),
+        'contributor_form_action': reverse('profiles:inno-save-contributor', kwargs={'innovation_id': innovation.id}),
+        'contact_person_form_action': reverse('profiles:inno-save-contact-person',
+                                              kwargs={'innovation_id': innovation.id}),
         'previous_form': reverse('profiles:inno-create-detailed', kwargs={'innovation_id': innovation.id})
     }
     return render(request, 'profiles/innovation_form_snippets/contact_persons_and_contributors.html',
                   context=context)
 
+
+def save_contact_person(request, innovation_id):
+    if request.method != 'POST':
+        return JsonResponse({'message': 'Method not allowed.'}, status=HTTPStatus.BAD_REQUEST)
+
+    form = InnovationContactPersonForm(request.POST)
+    if form.is_valid():
+        contact_person = form.save(commit=False)
+        contact_person.innovation_id = innovation_id
+        contact_person.save()
+
+        entry_html = render_to_string('profiles/innovation_data_snippets/contact_person_tr.html',
+                                      request=request, context={'contact_person': contact_person})
+        return HttpResponse(simplejson.dumps({'entry_html': entry_html}), 'application/json')
+    else:
+        return JsonResponse({'message': 'Contact person not saved.'}, status=HTTPStatus.BAD_REQUEST)
