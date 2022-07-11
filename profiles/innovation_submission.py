@@ -91,9 +91,18 @@ def detailed_information(request, innovation_id):
     except InnovationProfile.DoesNotExist:
         raise Http404
 
+    if request.method == 'POST':
+        detail_form = DetailedInformationForm(data=request.POST, instance=innovation)
+        if detail_form.is_valid():
+            detail_form.save()
+            return redirect('profiles:inno-create-persons', innovation_id=innovation.id)
+    else:
+        detail_form = DetailedInformationForm(instance=innovation)
+
     context = {
         'form_step': 2,
-        'detail_form': DetailedInformationForm(instance=innovation),
+        'detail_form': detail_form,
+        'form_action': reverse('profiles:inno-create-detailed', kwargs={'innovation_id': innovation.id}),
         'next_form': reverse('profiles:inno-create-persons', kwargs={'innovation_id': innovation.id}),
         'previous_form': reverse('profiles:inno-create-doc', kwargs={'innovation_id': innovation.id})
     }
