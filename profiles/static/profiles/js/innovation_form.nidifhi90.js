@@ -5,7 +5,6 @@ $(document).ready(function () {
     let contributors_modal = $('#contributors-modal');
     let images_modal = $('#innovation-image-modal');
     let reference_url_modal = $('#innovation-ref-material-modal');
-    let contributors_form = $('#contributor-form');
     let images_form = $('#innovation-image-form');
     let reference_url_form = $('#innovation-ref-material-form');
 
@@ -96,6 +95,29 @@ $(document).ready(function () {
                     $('#contributors-table').find('tbody').append(data.entry_html);
                     contributors_modal.iziModal('close');
                     contributors_form.trigger('reset');
+                    submit_btn.removeAttr('disabled');
+                }
+            },
+            error: function (data) {
+
+            }
+        });
+    });
+
+    reference_url_modal.on('submit', '#ref-materials-form', function (e) {
+        e.preventDefault();
+        let reference_form = $(this);
+        let submit_btn = reference_form.find('button[type=submit]');
+        submit_btn.attr('disabled', 'disabled');
+        $.ajax({
+            url: reference_form.data('action'),
+            data: reference_form.serialize(),
+            method: "POST",
+            success: function (data) {
+                if(data.entry_html){
+                    $('#ref-materials-table').find('tbody').append(data.entry_html);
+                    reference_url_modal.iziModal('close');
+                    reference_form.trigger('reset');
                     submit_btn.removeAttr('disabled');
                 }
             },

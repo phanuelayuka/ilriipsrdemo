@@ -35,6 +35,9 @@ class InnovationReferenceMaterialUrl(CoreAbstractModel):
     innovation = models.ForeignKey(InnovationProfile, on_delete=models.CASCADE)
     url = models.URLField()
 
+    def __str__(self):
+        return self.url
+
 
 class InnovationContactPerson(CoreAbstractModel):
     innovation = models.ForeignKey(InnovationProfile, on_delete=models.CASCADE)

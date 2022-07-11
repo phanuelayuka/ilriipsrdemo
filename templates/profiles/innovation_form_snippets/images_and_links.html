@@ -57,20 +57,11 @@
                         </div>
                     </div>
                     <div class="table-responsive mt-3 no-wrap">
-                        <table class="table v-middle mb-0">
+                        <table class="table v-middle mb-0" id="ref-materials-table">
                             <tbody>
-                            <tr>
-                                <td>MedicalPro Theme</td>
-                            </tr>
-                            <tr>
-                                <td>Elite Admin</td>
-                            </tr>
-                            <tr>
-                                <td>Helping Hands</td>
-                            </tr>
-                            <tr>
-                                <td>Digital Agency</td>
-                            </tr>
+                                {% for reference_url in innovation_refs %}
+                                    {% include 'profiles/innovation_data_snippets/ref_item_url_tr.html' %}
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>
@@ -80,7 +71,8 @@
     </div>
 
     <div id="innovation-image-modal" class="hidden-div" data-izimodal-title="Add Innovation Image">
-        <form action="{{ images_form_action }}" id="innovation-image-form" class="p-3" enctype="multipart/form-data" method="post">
+        <form action="javascript:void(0)" data-action="{{ images_form_action }}" id="innovation-image-form"
+              class="p-3" enctype="multipart/form-data" method="post">
             <div class="row">
                 <div class="col-md-12">
                     <div class="mb-3">
@@ -98,7 +90,9 @@
     </div>
 
     <div id="innovation-ref-material-modal" class="hidden-div" data-izimodal-title="Add Reference Material URL">
-        <form action="{{ ref_form_action }}" id="innovation-ref-material-form" class="p-3" method="post">
+        <form action="javascript:void(0)" data-action="{{ ref_form_action }}" id="ref-materials-form"
+              class="p-3" method="post">
+            {% csrf_token %}
             <div class="row">
                 <div class="col-md-12">
                     <div class="mb-3">
