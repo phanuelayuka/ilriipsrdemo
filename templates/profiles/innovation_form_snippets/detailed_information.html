@@ -1,39 +1,68 @@
-
 {% extends 'profiles/innovation_submission_form_base.html' %}
+{% load widget_tweaks %}
 
 {% block detailed_info_section %}
     <form action="{{ form_action }}">
         <div class="row">
             <div class="col-md-12">
-              <div class="mb-3">
-                <label for="jobTitle1"></label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="jobTitle1"
-                />
-              </div>
+                <div class="mb-3">
+                    <label for="id_characterization">
+                        What would be the best way to characterize this innovation?
+                    </label>
+                    {% render_field detail_form.characterization class="form-control" %}
+                </div>
             </div>
-            <div class="col-md-6">
-              <div class="mb-3">
-                <label for="videoUrl1">Company Name :</label>
-                <input type="text" class="form-control" id="videoUrl1"
-                />
-              </div>
-            </div>
+
             <div class="col-md-12">
-              <div class="mb-3">
-                <label for="shortDescription1"
-                  >Job Description :</label
-                >
-                <textarea
-                  name="shortDescription"
-                  id="shortDescription1"
-                  rows="6"
-                  class="form-control"
-                ></textarea>
-              </div>
+                <div class="mb-5">
+                    <label for="id_topology">
+                        Which of the below typologies best fits the nature of the innovation?
+                    </label>
+                    {% render_field detail_form.topology class="form-control" %}
+                </div>
             </div>
-          </div>
+
+            <div class="col-md-12">
+                <div class="mb-5">
+                    <label for="id_new_improved_variety_breed">
+                        Are you profiling a new or improved variety or breed?
+                    </label>
+                    {% render_field detail_form.new_improved_variety_breed class="form-control" %}
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="mb-5">
+                    <label for="id_improved_varieties_number">
+                        Please indicate the number of individual new or improved lines/varieties.
+                    </label>
+                    {% render_field detail_form.improved_varieties_number class="form-control" %}
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-nav-buttons text-center margin-top-10 padding-0">
+
+                    {% if previous_form %}
+                        <a href="{{ previous_form }}" class="btn btn-primary btn-rounded">
+                            Previous Step <i class="mdi mdi-arrow-right"></i>
+                        </a>
+                    {% endif %}
+
+                    {% if next_form %}
+                        <a href="{{ next_form }}" class="btn btn-step">
+                            Skip to Next Step <i class="mdi mdi-arrow-right"></i>
+                        </a>
+                    {% endif %}
+
+                    <button type="submit" class="btn btn-success btn-rounded pull-right">
+                        Save & go to Next
+                    </button>
+                </div>
+            </div>
+        </div>
     </form>
+
 {% endblock %}
