@@ -1,0 +1,159 @@
+{% extends 'profiles/innovation_submission_form_base.html' %}
+{% load widget_tweaks %}
+
+
+{% block personnel_section %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-md-flex">
+                        <div>
+                            <h4 class="card-title" style="font-size: 16px">
+                                <span class="lstick d-inline-block align-middle"></span>Contact Persons
+                            </h4>
+                        </div>
+                        <div class="ms-auto mt-3 mt-md-0">
+                            <button class="btn btn-sm btn-rounded btn-success" id="contact-person-modal-btn">
+                                Add Contact Person
+                            </button>
+                        </div>
+                    </div>
+                    <div class="table-responsive mt-3 no-wrap">
+                        <table class="table v-middle mb-0">
+                            <tbody>
+                            <tr>
+                                <td style="width: 30px">
+                                    <span class=" round rounded-circle text-white d-inline-block text-center bg-info">S</span>
+                                </td>
+                              <td>
+                                <h6 class="mb-0 font-weight-medium">Sunil Joshi</h6>
+                                <small class="text-muted">Web Designer</small>
+                              </td>
+                                <td>Elite Admin</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-md-flex">
+                        <div>
+                            <h6 class="card-title" style="font-size: 16px">
+                                <span class="lstick d-inline-block align-middle"></span>Contributors
+                            </h6>
+                        </div>
+                        <div class="ms-auto mt-3 mt-md-0">
+                            <button class="btn btn-sm btn-rounded btn-dark" id="contributor-modal-btn">
+                                Add Contributor
+                            </button>
+                        </div>
+                    </div>
+                    <div class="table-responsive mt-3 no-wrap">
+                        <table class="table v-middle mb-0">
+                            <tbody>
+                                <tr>
+                                    <td style="width: 30px">
+                                        <span class=" round rounded-circle text-white d-inline-block text-center bg-info">S</span>
+                                    </td>
+                                  <td>
+                                    <h6 class="mb-0 font-weight-medium">Sunil Joshi</h6>
+                                    <small class="text-muted">Web Designer</small>
+                                  </td>
+                                    <td>Elite Admin</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="contact-person-modal" class="hidden-div" data-izimodal-title="Add a contact person">
+        <form action="{{ form_action }}" id="contact-person-form" class="p-3">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="mb-3">
+                    <label for="id_first_name">First name</label>
+                    {% render_field contact_person_form.first_name class="form-control" %}
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="mb-3">
+                    <label for="id_first_name">Last name</label>
+                    {% render_field contact_person_form.last_name class="form-control" %}
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="mb-3">
+                    <label for="id_first_name">Last name</label>
+                    {% render_field contact_person_form.email class="form-control" %}
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="mb-5">
+                    <button class="btn btn-light">Save Contact Person</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    </div>
+
+    <div id="contributors-modal" class="hidden-div" data-izimodal-title="Add Contributor">
+        <form action="{{ form_action }}" id="contributor-form" class="p-3">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="mb-3">
+                        <label for="id_first_name">First name</label>
+                        {% render_field contributor_form.first_name class="form-control" %}
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="mb-3">
+                        <label for="id_last_name">Last name</label>
+                        {% render_field contributor_form.last_name class="form-control" %}
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="mb-5">
+                        <button class="btn btn-light">Save Contributor</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-nav-buttons text-center margin-top-10 padding-0">
+
+                {% if previous_form %}
+                    <a href="{{ previous_form }}" class="btn btn-primary btn-rounded">
+                        Previous Step <i class="mdi mdi-arrow-right"></i>
+                    </a>
+                {% endif %}
+
+                {% if next_form %}
+                    <a href="{{ next_form }}" class="btn btn-step">
+                        Skip to Next Step <i class="mdi mdi-arrow-right"></i>
+                    </a>
+                {% endif %}
+
+                <button type="submit" class="btn btn-success btn-rounded pull-right">
+                    Save & go to Next
+                </button>
+            </div>
+        </div>
+    </div>
+{% endblock %}

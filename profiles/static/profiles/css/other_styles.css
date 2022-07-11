@@ -1,0 +1,8 @@
+
+.hidden-div {
+    display: none;
+}
+
+.iziModal .iziModal-header {
+    background: var(--primary-color) !important;
+}
