@@ -6,3 +6,10 @@
 .iziModal .iziModal-header {
     background: var(--primary-color) !important;
 }
+
+.table > tbody > tr > td.fit-td {
+    width: 1px;
+    white-space: nowrap;
+    padding-right: 15px;
+    padding-left: 15px;
+}
