@@ -1,3 +1,9 @@
+/*
+Template Name: Monster Admin
+Author: Themedesigner
+Email: niravjoshi87@gmail.com
+File: css
+*/
 
 .wizard-content .wizard>.steps>ul>li:after,
 .wizard-content .wizard>.steps>ul>li:before {
@@ -78,9 +84,9 @@
 }
 
 .wizard-content .wizard>.steps>ul>li.current .step {
-    border-color: var(--primary-color) ;
+    border-color: #2962FF ;
     background-color: #fff;
-    color: var(--primary-color)
+    color: #2962FF 
 }
 
 .wizard-content .wizard>.steps>ul>li.disabled a,
@@ -97,8 +103,8 @@
 }
 
 .wizard-content .wizard>.steps>ul>li.done .step {
-    background-color: var(--primary-color) ;
-    border-color: var(--primary-color) ;
+    background-color: #2962FF ;
+    border-color: #2962FF ;
     color: #fff
 }
 
@@ -170,7 +176,7 @@
 }
 
 .wizard-content .wizard>.actions>ul>li>a {
-    background: var(--primary-color) ;
+    background: #2962FF ;
     color: #fff;
     display: block;
     padding: 7px 12px;
@@ -221,10 +227,10 @@
 
 .wizard-content .wizard.wizard-circle>.steps>ul>li:after,
 .wizard-content .wizard.wizard-circle>.steps>ul>li:before {
-    top: 35px;
+    top: 45px;
     width: 50%;
     height: 3px;
-    background-color: var(--primary-color)
+    background-color: #2962FF 
 }
 
 .wizard-content .wizard.wizard-circle>.steps>ul>li.current:after,
@@ -234,12 +240,11 @@
 }
 
 .wizard-content .wizard.wizard-circle>.steps .step {
-    width: 35px;
-    height: 35px;
-    line-height: 30px;
+    width: 50px;
+    height: 50px;
+    line-height: 45px;
     border: 3px solid #F3F3F3;
-    font-size: 1rem;
-    font-weight: bold;
+    font-size: 1.3rem;
     border-radius: 50%
 }
 
@@ -248,18 +253,18 @@
     top: 39px;
     width: 50%;
     height: 2px;
-    background-color: var(--primary-color)
+    background-color: #2962FF 
 }
 
 .wizard-content .wizard.wizard-notification>.steps>ul>li.current .step {
-    border: 2px solid var(--primary-color) ;
-    color: var(--primary-color) ;
+    border: 2px solid #2962FF ;
+    color: #2962FF ;
     line-height: 36px
 }
 
 .wizard-content .wizard.wizard-notification>.steps>ul>li.current .step:after,
 .wizard-content .wizard.wizard-notification>.steps>ul>li.done .step:after {
-    border-top-color: var(--primary-color)
+    border-top-color: #2962FF 
 }
 
 .wizard-content .wizard.wizard-notification>.steps>ul>li.current:after,
@@ -334,7 +339,7 @@
     }
     .wizard-content .wizard>.steps>ul>li:last-child:after {
         content: '';
-        background-color: var(--primary-color)
+        background-color: #2962FF 
     }
     .wizard-content .wizard.vertical>.steps {
         width: 15%
@@ -346,7 +351,7 @@
         width: 100%
     }
     .wizard-content .wizard>.steps>ul>li.current:after {
-        background-color: var(--primary-color)
+        background-color: #2962FF 
     }
      .wizard-content .wizard.vertical>.steps>ul>li {
         display: block;

@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
     let innovation_submission_div = $('#innovation-submission-div');
     let contact_person_modal = $('#contact-person-modal');
     let contributors_modal = $('#contributors-modal');
@@ -17,6 +16,60 @@ $(document).ready(function () {
             return false;
         },
     });
+
+    $('#id_title').textcounter({
+        type: "word",
+        max: 10,
+        countDown: true
+    });
+
+    $('#id_description').textcounter({
+        type: "word",
+        max: 25,
+        countDown: true
+    });
+
+    $('#id_in_cgiar_innovation_dashboard').on('change', function (e) {
+        let in_cgiar_innovation_dashboard = $(this);
+        let dashboard_id_title_div = $('div.innovation-dashboard-id-or-title-div');
+        let dashboard_id_title_input = $('#id_innovation_dashboard_id_or_title');
+
+        if(in_cgiar_innovation_dashboard.val() === 'yes'){
+            dashboard_id_title_div.show();
+            dashboard_id_title_input.attr('required', 'required');
+        }else {
+            dashboard_id_title_div.hide();
+            dashboard_id_title_input.removeAttr('required');
+        }
+    }).trigger('change');
+
+    $('#id_topology').on('change', function (e) {
+        let in_cgiar_innovation_dashboard = $(this);
+        let new_breed_div = $('div.new-improved-variety-breed-div');
+        let new_breed_input = $('#id_new_improved_variety_breed');
+
+        if(in_cgiar_innovation_dashboard.val() === 'technological'){
+            new_breed_div.show();
+            new_breed_input.attr('required', 'required');
+        }else {
+            new_breed_div.hide();
+            new_breed_input.removeAttr('required');
+        }
+    }).trigger('change');
+
+    $('#id_new_improved_variety_breed').on('change', function (e){
+        let in_cgiar_innovation_dashboard = $(this);
+        let new_breed_no_div = $('div.new-varieties-number-div');
+        let new_breed_no_input = $('#id_improved_varieties_number');
+
+        if(in_cgiar_innovation_dashboard.val() === 'yes'){
+            new_breed_no_div.show();
+            new_breed_no_input.attr('required', 'required');
+        }else {
+            new_breed_no_div.hide();
+            new_breed_no_input.removeAttr('required');
+        }
+    }).trigger('change');
 
     $('#contact-person-modal-btn').on('click', function (e) {
         e.preventDefault();
