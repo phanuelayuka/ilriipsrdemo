@@ -29,6 +29,28 @@ def basic_information(request):
     return render(request, 'profiles/innovation_form_snippets/basic_information.html', context=context)
 
 
+def basic_info_edit(request, innovation_id):
+    try:
+        innovation = InnovationProfile.objects.get(id=innovation_id, deleted=False)
+    except InnovationProfile.DoesNotExist:
+        raise Http404
+
+    if request.method == 'POST':
+        basic_form = BasicInformationForm(data=request.POST, instance=innovation)
+        if basic_form.is_valid():
+            innovation = basic_form.save(commit=True)
+            return redirect('profiles:inno-create-doc', innovation_id=innovation.id)
+    else:
+        basic_form = BasicInformationForm(instance=innovation)
+
+    context = {
+        'form_step': 0,
+        'basic_form': basic_form,
+        'form_action': reverse('profiles:inno-create-basic-edit', kwargs={'innovation_id':innovation.id}),
+    }
+    return render(request, 'profiles/innovation_form_snippets/basic_information.html', context=context)
+
+
 def images_and_ref(request, innovation_id):
     try:
         innovation = InnovationProfile.objects.get(id=innovation_id, deleted=False)
@@ -47,6 +69,7 @@ def images_and_ref(request, innovation_id):
         'images_form_action': reverse('profiles:inno-save-image', kwargs={'innovation_id': innovation.id}),
         'ref_form_action': reverse('profiles:inno-save-ref', kwargs={'innovation_id': innovation.id}),
         'next_form': reverse('profiles:inno-create-detailed', kwargs={'innovation_id': innovation.id}),
+        'previous_form': reverse('profiles:inno-create-basic-edit', kwargs={'innovation_id': innovation.id})
     }
     return render(request, 'profiles/innovation_form_snippets/images_and_links.html', context=context)
 

@@ -9,6 +9,7 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('forms/', views.forms, name='form'),
     path('innovations/create/basic/', inno_create.basic_information, name='inno-create-basic'),
+    path('innovations/create/<int:innovation_id>/basic/', inno_create.basic_info_edit, name='inno-create-basic-edit'),
     path('innovations/create/<int:innovation_id>/documentation/', inno_create.images_and_ref, name='inno-create-doc'),
     path('innovations/create/<int:innovation_id>/detailed/', inno_create.detailed_information,
          name='inno-create-detailed'),
