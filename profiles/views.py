@@ -1,8 +1,11 @@
 from django.shortcuts import render
 
+from core.models import InnovationProfile
+
 
 def index(request):
-    return render(request, 'profiles/index.html')
+    innovations = InnovationProfile.objects.filter(deleted=False)
+    return render(request, 'profiles/index.html', context={'innovations': innovations})
 
 
 def forms(request):

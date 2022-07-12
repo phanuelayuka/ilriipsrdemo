@@ -46,15 +46,9 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="form-nav-buttons text-center margin-top-10 padding-0">
-                    {% if solution_id %}
-                        <a class="btn exit-btn" href="#">
-                            Cancel & Exit
-                        </a>
-                    {% else %}
-                        <a class="btn exit-btn" href="#">
-                            Back to My Solutions
-                        </a>
-                    {% endif %}
+                    <a class="btn btn-rounded btn-outline-danger" href="{% url 'profiles:index' %}">
+                        Cancel
+                    </a>
 
                     {% if next_form %}
                         <a href="{{ next_form }}" class="btn btn-step">
